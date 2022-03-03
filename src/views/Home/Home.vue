@@ -14,9 +14,9 @@
     <!-- 频道列表的标签页 -->
     <van-tabs v-model="active" sticky offset-top="1.22666667rem">
       <!-- 循环渲染用户的频道 -->
-      <van-tab v-for="item in userChannel" :key="item.id" :title="item.name">{{
-        item.name
-      }}</van-tab>
+      <van-tab v-for="item in userChannel" :key="item.id" :title="item.name"
+        ><art-list :channel-id="item.id"></art-list
+      ></van-tab>
     </van-tabs>
     <!-- 频道管理的小图标 -->
     <van-icon name="plus" size="16" class="plus" />
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import ArtList from '@/components/ArtList/ArtList.vue'
 // 按需导入 API 接口
 import { getUserChannelAPI } from '@/api/homeAPI'
 export default {
@@ -49,6 +50,9 @@ export default {
         this.userChannel = res.data.channels
       }
     }
+  },
+  components: {
+    ArtList
   }
 }
 </script>
